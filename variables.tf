@@ -1,9 +1,11 @@
-variable "creeds" {
-  type = map
-  default = {
-    "key1"  = {}
-    "cloud_id1" = {}
-    "folder_id1" = {}
+variable "key1" {
+  default = "null"
 }
 
+variable "cloud_id1" {
+ default = "null" 
+}
+
+variable "folder_id1" {
+ default = "null" 
 }
