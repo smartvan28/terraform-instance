@@ -1,7 +1,9 @@
 variable "creeds" {
-  type = any
+  type = map
   default = {
-    namespace           = null
-    tenant              = null
-    environment         = null
-  }
+    "key1"  = "null"
+    "cloud_id1" = "null"
+    "folder_id1" = "null"
+}
+
+}
