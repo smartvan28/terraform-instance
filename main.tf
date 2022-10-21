@@ -41,7 +41,14 @@ resource "yandex_compute_instance" "test" {
     foo      = "bar"
     ssh-keys = "ubuntu:${file("./id_rsa.pub")}"
   }
-
+  
+  connection {
+    type = "ssh"
+    user = "ubuntu"
+    private_key = "${file("./id_rsa")}"
+  }
+  
+  
   provisioner "file" {
   source      = "script.sh"
   destination = "/tmp/script.sh"
