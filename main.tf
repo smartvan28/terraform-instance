@@ -46,6 +46,7 @@ resource "yandex_compute_instance" "test" {
     type = "ssh"
     user = "ubuntu"
     private_key = "${file("./id_rsa")}"
+    host = self.network_interface[0].nat_ip_address
   }
   
   
