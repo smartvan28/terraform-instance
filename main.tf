@@ -69,6 +69,16 @@ resource "yandex_compute_instance" "test" {
 
 
 }
+  
+resource "yandex_lb_target_group" "foo" {
+  name      = "my-target-group"
+  target {
+  subnet_id = yandex_vpc_subnet.foo.id
+  address   = yandex_compute_instance.test.network_interface.0.ip_address
+}
+
+}  
+  
 
 resource "yandex_lb_network_load_balancer" "foo1" {
   name = "my-network-load-balancer"
