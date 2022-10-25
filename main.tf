@@ -9,6 +9,11 @@ terraform {
   required_version = ">= 0.13"
 }
 
+module "smartvan28-network" {
+  source  = "smartvan28/smartvan28-network/registry"
+  version = "1.0.0"
+}
+
 provider "yandex" {
   token     = var.key1
   cloud_id  = var.cloud_id1
@@ -62,23 +67,6 @@ resource "yandex_compute_instance" "test" {
     ]
   }
 
-
-}
-
-resource "yandex_vpc_network" "foo" {}
-
-resource "yandex_vpc_subnet" "foo" {
-  v4_cidr_blocks = ["10.2.0.0/16"]
-  zone       = "ru-central1-a"
-  network_id = "${yandex_vpc_network.foo.id}"
-}
-
-resource "yandex_lb_target_group" "foo" {
-  name      = "my-target-group"
-  target {
-  subnet_id = yandex_vpc_subnet.foo.id
-  address   = yandex_compute_instance.test.network_interface.0.ip_address
-}
 
 }
 
