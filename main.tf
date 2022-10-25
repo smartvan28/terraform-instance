@@ -9,10 +9,6 @@ terraform {
   required_version = ">= 0.13"
 }
 
-module "smartvan28-network" {
-  source  = "smartvan28/smartvan28-network/registry"
-  version = "1.0.1"
-}
 
 provider "yandex" {
   token     = var.key1
