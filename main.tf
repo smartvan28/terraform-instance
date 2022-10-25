@@ -11,7 +11,7 @@ terraform {
 
 module "smartvan28-network" {
   source  = "smartvan28/smartvan28-network/registry"
-  version = "1.0.0"
+  version = "1.0.1"
 }
 
 provider "yandex" {
@@ -38,7 +38,7 @@ resource "yandex_compute_instance" "test" {
   }
 
   network_interface {
-    subnet_id = "${yandex_vpc_subnet.foo.id}"
+    subnet_id = module.smartvan28-network.network_foo_id_subnet
     nat = true
   }
 
