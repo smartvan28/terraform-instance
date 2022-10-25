@@ -38,7 +38,7 @@ resource "yandex_compute_instance" "test" {
   }
 
   network_interface {
-    subnet_id = "${yandex_vpc_subnet.foo.id}"
+    subnet_id = yandex_vpc_subnet.foo.id
     nat = true
   }
 
@@ -92,7 +92,7 @@ resource "yandex_lb_network_load_balancer" "foo1" {
   }
 
   attached_target_group {
-    target_group_id = "${yandex_lb_target_group.foo.id}"
+    target_group_id = yandex_lb_target_group.foo.id
 
 
     healthcheck {
