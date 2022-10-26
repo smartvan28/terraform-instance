@@ -10,6 +10,9 @@ terraform {
 }
 
 
+
+
+
 provider "yandex" {
   token     = var.key1
   cloud_id  = var.cloud_id1
@@ -17,13 +20,14 @@ provider "yandex" {
   zone      = "ru-central1-a"
 }
 
+
 module "smartvan28-network" {
   source  = "smartvan28/smartvan28-network/registry"
   version = "1.0.1"
-  cloud_id1 = token
-  key1 = cloud_id
-  folder_id1 = folder_id
 }
+
+
+
 
 resource "yandex_compute_instance" "test" {
   name        = "test"
