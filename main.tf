@@ -21,17 +21,6 @@ provider "yandex" {
 }
 
 
-module "smartvan28-network" {
-  source  = "smartvan28/smartvan28-network/registry"
-  version = "1.0.1"
-  cloud_id1 = var.cloud_id1
-  folder_id1 = var.folder_id1
-  key1 = var.key1
-}
-
-
-
-
 resource "yandex_compute_instance" "test" {
   name        = "test"
   platform_id = "standard-v1"
@@ -49,7 +38,7 @@ resource "yandex_compute_instance" "test" {
   }
 
   network_interface {
-    subnet_id = module.smartvan28-network.network_foo_id_subnet
+    subnet_id = yandex_vpc_network.foo.id
     nat = true
   }
 
