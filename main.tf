@@ -24,6 +24,9 @@ provider "yandex" {
 module "smartvan28-network" {
   source  = "smartvan28/smartvan28-network/registry"
   version = "1.0.1"
+  cloud_id1 = var.cloud_id1
+  folder_id1 = var.folder_id1
+  key1 = var.key1
 }
 
 
