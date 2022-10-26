@@ -17,6 +17,11 @@ provider "yandex" {
   zone      = "ru-central1-a"
 }
 
+module "smartvan28-network" {
+  source  = "smartvan28/smartvan28-network/registry"
+  version = "1.0.1"
+}
+
 resource "yandex_compute_instance" "test" {
   name        = "test"
   platform_id = "standard-v1"
