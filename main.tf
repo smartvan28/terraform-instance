@@ -38,7 +38,7 @@ resource "yandex_compute_instance" "test" {
   }
 
   network_interface {
-    subnet_id = "test"
+    subnet_id = yandex_vpc_network.test.id
     nat = true
   }
 
@@ -73,7 +73,7 @@ resource "yandex_compute_instance" "test" {
 resource "yandex_lb_target_group" "foo" {
   name      = "my-target-group"
   target {
-  subnet_id = module.smartvan28-network.network_foo_id_subnet
+  subnet_id = yandex_vpc_network.test.id
   address   = yandex_compute_instance.test.network_interface.0.ip_address
 }
 
