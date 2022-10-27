@@ -38,7 +38,7 @@ resource "yandex_compute_instance" "test" {
   }
 
   network_interface {
-    subnet_id = yandex_vpc_network.test.id
+    subnet_id = module.smartvan28-network.network_foo_id_subnet
     nat = true
   }
 
