@@ -12,6 +12,10 @@ terraform {
 data "yandex_vpc_subnet" "test_subnet" {
   name = "test_subnet"
 }
+
+data "yandex_dns_zone" "zone1" {
+  name = "my-public-zone"
+}
   
 resource "yandex_compute_instance" "test" {
   name        = "test"
@@ -105,20 +109,8 @@ resource "yandex_lb_network_load_balancer" "foo1" {
   }
 }
 
-resource "yandex_dns_zone" "zone1" {
-  name        = "my-public-zone"
-  description = "Test public zone"
-
-  labels = {
-    label1 = "test-public"
-  }
-
-  zone    = "docker.smartvan.space."
-  public  = true
-}
-
 resource "yandex_dns_recordset" "rs1" {
-  zone_id = yandex_dns_zone.zone1.id
+  zone_id = data.yandex_dns_zone.zone1.id
   name    = "test.docker.smartvan.space."
   type    = "A"
   ttl     = 200
