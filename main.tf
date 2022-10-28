@@ -8,6 +8,10 @@ terraform {
 
   required_version = ">= 0.13"
 }  
+
+data "yandex_vpc_subnet" "test" {
+  name = "test"
+}
   
 resource "yandex_compute_instance" "test" {
   name        = "test"
@@ -26,7 +30,7 @@ resource "yandex_compute_instance" "test" {
   }
 
   network_interface {
-    subnet_id = module.smartvan28-network.network_foo_id_subnet
+    subnet_id = data.yandex_vpc_subnet.test.id
     nat = true
   }
 
