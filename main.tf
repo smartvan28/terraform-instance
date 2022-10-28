@@ -9,8 +9,8 @@ terraform {
   required_version = ">= 0.13"
 }  
 
-data "yandex_vpc_subnet" "test" {
-  name = "test"
+data "yandex_vpc_subnet" "test_subnet" {
+  name = "test_subnet"
 }
   
 resource "yandex_compute_instance" "test" {
@@ -30,7 +30,7 @@ resource "yandex_compute_instance" "test" {
   }
 
   network_interface {
-    subnet_id = data.yandex_vpc_subnet.test.id
+    subnet_id = data.yandex_vpc_subnet.test_subnet.id
     nat = true
   }
 
@@ -65,7 +65,7 @@ resource "yandex_compute_instance" "test" {
 resource "yandex_lb_target_group" "foo" {
   name      = "my-target-group"
   target {
-  subnet_id = data.yandex_vpc_subnet.test.id
+  subnet_id = data.yandex_vpc_subnet.test_subnet.id
   address   = yandex_compute_instance.test.network_interface.0.ip_address
 }
 
