@@ -1,5 +1,13 @@
 terraform {
-  
+  required_providers {
+    yandex = {
+      source = "yandex-cloud/yandex"
+    }
+  }
+
+
+  required_version = ">= 0.13"
+}  
   
 resource "yandex_compute_instance" "test" {
   name        = "test"
@@ -111,6 +119,4 @@ resource "yandex_dns_recordset" "rs1" {
   type    = "A"
   ttl     = 200
   data    = ["${[for s in yandex_lb_network_load_balancer.foo1.listener: s.external_address_spec.*.address].0[0]}"]
-}
-
 }
