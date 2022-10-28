@@ -65,7 +65,7 @@ resource "yandex_compute_instance" "test" {
 resource "yandex_lb_target_group" "foo" {
   name      = "my-target-group"
   target {
-  subnet_id = yandex_vpc_network.test.id
+  subnet_id = data.yandex_vpc_subnet.test.id
   address   = yandex_compute_instance.test.network_interface.0.ip_address
 }
 
