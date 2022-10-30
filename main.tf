@@ -43,26 +43,6 @@ resource "yandex_compute_instance" "test" {
     ssh-keys = "ubuntu:${file("./id_rsa.pub")}"
   }
   
-  connection {
-    type = "ssh"
-    user = "ubuntu"
-    private_key = "${file("./id_rsa")}"
-    host = self.network_interface[0].nat_ip_address
-  }
-  
-  
-  provisioner "file" {
-  source      = "script.sh"
-  destination = "/tmp/script.sh"
-  }
-
-  provisioner "remote-exec" {
-  inline = [
-      "chmod +x /tmp/script.sh",
-      "/tmp/script.sh",
-    ]
-  }
-
 
 }
  
