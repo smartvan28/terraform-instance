@@ -97,7 +97,7 @@ resource "yandex_lb_network_load_balancer" "foo1" {
   }
   
     listener {
-    name = "service-port"
+    name = "exporter-port"
     port = 9100
     target_port = 9100
      external_address_spec {
