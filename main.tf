@@ -24,7 +24,7 @@ resource "yandex_compute_instance" "test" {
 
   resources {
     cores  = 2
-    memory = 2
+    memory = 4
   }
 
   boot_disk {
