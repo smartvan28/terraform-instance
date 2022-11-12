@@ -47,7 +47,6 @@ resource "yandex_compute_instance" "test" {
 }
 
 resource "local_file" "inventory" {
-  depends_on = [module.smartvan28-instance]
   filename = "./inventory.txt"
   content = <<EOF
   [webserver]
