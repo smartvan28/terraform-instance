@@ -45,6 +45,15 @@ resource "yandex_compute_instance" "test" {
   
 
 }
+
+resource "local_file" "inventory" {
+  depends_on = [module.smartvan28-instance]
+  filename = "./inventory.txt"
+  content = <<EOF
+  [webserver]
+  web1 ansible_host=${yandex_compute_instance.test.network_interface.0.nat_ip_address} ansible_user = ubuntu
+  EOF
+}
  
 resource "yandex_lb_target_group" "foo" {
   name      = "my-target-group"
